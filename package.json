@@ -1,0 +1,42 @@
+{
+  "name": "service-auth",
+  "version": "1.0.0",
+  "description": "code.id detechnical test",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "jest --coverage=true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diazravivnur/diazRaviv-betest.git"
+  },
+  "author": "diaz raviv nur",
+  "license": "ISC",
+  "dependencies": {
+    "boom": "^7.3.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "ioredis": "^5.4.1",
+    "joi": "^17.4.2",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "mockingoose": "^2.16.2",
+    "moment": "^2.30.1",
+    "mongoose": "^8.4.0",
+    "pino": "^9.1.0",
+    "qs": "^6.10.3",
+    "redis": "^4.6.14",
+    "semver": "^7.3.6"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "prettier": "^3.0.3",
+    "supertest": "^7.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/diazravivnur/diazRaviv-betest/issues"
+  },
+  "homepage": "https://github.com/diazravivnur/diazRaviv-betest#readme"
+}

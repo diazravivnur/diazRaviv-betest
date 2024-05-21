@@ -1,0 +1,33 @@
+[
+  {
+    "httpStatus": 200,
+    "responseStatus": [
+      {
+        "code": "00000",
+        "message": "Success"
+      },
+      {
+        "code": "00001",
+        "message": "Success without data"
+      }
+    ]
+  },
+  {
+    "httpStatus": 400,
+    "responseStatus": [
+      {
+        "code": "00004",
+        "message": "INVALID_OTP"
+      }
+    ]
+  },
+  {
+    "httpStatus": 500,
+    "responseStatus": [
+      {
+        "code": "500",
+        "message": "Internal Server Error"
+      }
+    ]
+  }
+]
