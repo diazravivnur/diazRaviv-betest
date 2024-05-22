@@ -1,6 +1,5 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const Boom = require('boom');
 const CommonHelper = require('./server/helpers/commonHelper');
 const app = express();
 const Port = 8080;

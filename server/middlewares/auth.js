@@ -37,7 +37,7 @@ exports.auth = async (request, res, next) => {
     if (!user) return CommonHelper.errorResponse(res, 401, 'Unauthorized', 'User not found');
 
     request.header.userName = user.userName;
-    request.headers.id = user.id;
+    request.headers.id = user._id;
     next();
   } catch (error) {
     if (error instanceof jwt.TokenExpiredError) return CommonHelper.errorResponse(res, 401, 'Unauthorized', 'Token expired');

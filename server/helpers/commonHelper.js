@@ -17,9 +17,14 @@ const responseSuccess = (res, status, statusMessage, data) => {
 const errorResponse = (res, status = 500, statusMessage = 'Internal Server Error', message = 'Something Went Wrong') => {
   return res.status(status).json({ status, message, statusMessage });
 };
+const getDefaultHeaders = (dataObject) => ({
+  Authorization:
+    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NGQzYzI1ZDE4MDEyMTZjNTE3YTcxNSIsInVzZXJOYW1lIjoiQWxlbmVfRnJpZXNlbjE0IiwiaWF0IjoxNzE2MzM3NzAxLCJleHAiOjE3MTYzNDEzMDF9.m18XgVpl_0P9eE6IAHFmWyQsqH-EU8_PyrvVcCbRBpU'
+});
 
 module.exports = {
   log,
   responseSuccess,
-  errorResponse
+  errorResponse,
+  getDefaultHeaders
 };
