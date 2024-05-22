@@ -317,4 +317,104 @@ describe('SERVICE-AUTH', () => {
         });
     });
   });
+
+  describe('[GET] User By Account Number', () => {
+    beforeEach(() => {
+      const specificId = '664d3fc3ff0857ddfe3a2f77';
+      mockingoose(User).toReturn(
+        {
+          _id: specificId,
+          userName: 'testuser',
+          accountNumber: '12345678',
+          emailAddress: 'testuser@example.com',
+          identityNumber: 123456
+        },
+        'findOne'
+      );
+      // let getKey;
+      // getKey = jest.spyOn(RedisService, 'getDataRedis');
+      // MockGetKeyRedis =
+      //   '{"_id":"664d3fc3ff0857ddfe3a2f77","userName":"Abigayle.Hegmann","accountNumber":"88786686","emailAddress":"jamil85@example.com","identityNumber":951,"__v":0}';
+
+      // getKey.mockImplementation((keys) => {
+      //   if (keys.key === `fmc_pt_status_TSEL_i1_123123123`) {
+      //     return Promise.resolve(MockGetKeyRedis);
+      //   }
+      // });
+    });
+
+    test('it should return status response 200 Success Find User By Account Number', async () => {
+      const specificId = '07310711';
+      await request(server)
+        .get(`/user/account?accountNumber=${specificId}`)
+        .set(commonHelper.getDefaultHeaders())
+        .expect(200)
+        .then((response) => {
+          expect(response.body).toBeDefined();
+          expect(response.statusCode).toBe(200);
+          expect(response.body.status).toBe('Success');
+        });
+    });
+
+    test('it should return status response 500 ', async () => {
+      mockingoose(User).toReturn(new Error('Database error'), 'findOne');
+      await request(server)
+        .get('/user?id=664d3fc3ff0857ddfe3a2f77')
+        .expect(500)
+        .set(commonHelper.getDefaultHeaders())
+        .then((response) => {
+          expect(response.statusCode).toBe(500);
+        });
+    });
+  });
+
+  describe('[GET] User By Account Number', () => {
+    beforeEach(() => {
+      const specificId = '664d3fc3ff0857ddfe3a2f77';
+      mockingoose(User).toReturn(
+        {
+          _id: specificId,
+          userName: 'testuser',
+          accountNumber: '12345678',
+          emailAddress: 'testuser@example.com',
+          identityNumber: 123456
+        },
+        'findOne'
+      );
+      // let getKey;
+      // getKey = jest.spyOn(RedisService, 'getDataRedis');
+      // MockGetKeyRedis =
+      //   '{"_id":"664d3fc3ff0857ddfe3a2f77","userName":"Abigayle.Hegmann","accountNumber":"88786686","emailAddress":"jamil85@example.com","identityNumber":951,"__v":0}';
+
+      // getKey.mockImplementation((keys) => {
+      //   if (keys.key === `fmc_pt_status_TSEL_i1_123123123`) {
+      //     return Promise.resolve(MockGetKeyRedis);
+      //   }
+      // });
+    });
+
+    test('it should return status response 200 Success Find User By Account Number', async () => {
+      const specificId = '07310711';
+      await request(server)
+        .get(`/user/identity?identityNumber=693`)
+        .set(commonHelper.getDefaultHeaders())
+        .expect(200)
+        .then((response) => {
+          expect(response.body).toBeDefined();
+          expect(response.statusCode).toBe(200);
+          expect(response.body.status).toBe('Success');
+        });
+    });
+
+    test('it should return status response 500 ', async () => {
+      mockingoose(User).toReturn(new Error('Database error'), 'findOne');
+      await request(server)
+        .get('identity?identityNumber=693')
+        .expect(500)
+        .set(commonHelper.getDefaultHeaders())
+        .then((response) => {
+          expect(response.statusCode).toBe(500);
+        });
+    });
+  });
 });

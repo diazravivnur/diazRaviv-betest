@@ -8,6 +8,16 @@ const findUserById = async (id) => {
   return user;
 };
 
+const findUserByAccountNumber = async (accountNumber) => {
+  return User.findOne({ accountNumber });
+};
+
+const findUserByIdentityNumber = async (identityNumber) => {
+  return User.findOne({ identityNumber });
+};
+
 module.exports = {
-  findUserById
+  findUserById,
+  findUserByAccountNumber,
+  findUserByIdentityNumber
 };

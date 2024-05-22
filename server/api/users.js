@@ -66,6 +66,36 @@ const getUserById = async (req, res) => {
   }
 };
 
+const getUserByAccountNumber = async (req, res) => {
+  const { accountNumber } = req.query;
+  if (!accountNumber) return CommonHelper.errorResponse(res, 400, 'Bad Request', 'Account Number is required');
+
+  try {
+    const user = await userService.findUserByAccountNumber(accountNumber);
+    if (!user) return CommonHelper.errorResponse(res, 404, 'Not Found');
+
+    return CommonHelper.responseSuccess(res, 200, 'Success', user);
+  } catch (error) {
+    CommonHelper.log(['ERROR', 'getUserByAccountNumber', 'users.js'], { message: `${error}` });
+    return CommonHelper.errorResponse(res, error.status, error.message);
+  }
+};
+
+const getUserByIdentityNumber = async (req, res) => {
+  const { identityNumber } = req.query;
+  if (!identityNumber) return CommonHelper.errorResponse(res, 400, 'Bad Request', 'Identity Number is required');
+
+  try {
+    const user = await userService.findUserByIdentityNumber(identityNumber);
+    if (!user) return CommonHelper.errorResponse(res, 404, 'Not Found');
+
+    return CommonHelper.responseSuccess(res, 200, 'Success', user);
+  } catch (error) {
+    CommonHelper.log(['ERROR', 'getUserByIdentityNumber', 'users.js'], { message: `${error}` });
+    return CommonHelper.errorResponse(res, error.status, error.message);
+  }
+};
+
 const delUserById = async (req, res) => {
   const { error } = ValidationHelper.getUserByIdValidation(req.query);
   if (error) return res.status(400).send(Boom.badRequest(error.details[0].message));
@@ -111,6 +141,8 @@ const updateUserById = async (req, res) => {
 Router.post('/user', createUser);
 Router.get('/users', getAllUsers);
 Router.get('/user', auth, getUserById);
+Router.get('/user/account', auth, getUserByAccountNumber);
+Router.get('/user/identity', auth, getUserByIdentityNumber);
 Router.delete('/user', auth, delUserById);
 Router.patch('/user', auth, updateUserById);
 
